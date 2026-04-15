@@ -78,5 +78,5 @@ class Context(object):
             self.__flush()
 
     def __flush(self):
-        response = self.__client.batch_write_item(RequestItems=self.__items_buffer)
+        response = self.__client.batch_write_item(RequestItems=dict(self.__items_buffer))
         self.__items_buffer = defaultdict(list, response.get('UnprocessedItems', {}))
